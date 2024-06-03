@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>operator</title>
+</head>
+<body>
+  <script>
+    /*
+      1. 산술 연산자
+        1) 더하기 : +  
+        2) 빼기   : - 
+        3) 곱하기  : * 
+        4) 제곱    : **
+        5) 나누기  : /, 5 / 2 == 2.5
+        6) 나머지  : %, 5 % 2 == 1
+        7) 몫     : parseInt(), parseInt(5/2) ==2
+      2. 증감 연산자
+        1) ++
+        2) --
+      3. 대입 연산자
+        1) =
+        2) +=, -=, *=, /= 등
+      4. 비교 연산자
+        1) > , >=
+        2) < , <=
+        3) ==  : 값이 같다. (1 == '1' 결과는 true )
+           === : 값과 타입이 모두 같다. ( 1 === '1' 결과는 false)
+        4) !=  : 값이 다르다
+           !== :값과 타입이 모두 다르다
+      5. 논리 연산자
+        1) && : 논리 AND (short circuit 지원함)
+        2) || : 논리 OR  (short circuit 지원함)
+        3) !  : 논리 NOT
+      6. 조건연산자(삼항연산자)
+         조건식 ? true 일때의 반환값 : false일때의 반환값
+      7. 문자열 연결 연산자
+         +   
+    */
+    /*
+      Boolean타입의 true 와 false
+      1. true  : 데이터가 있으면 true로 간주한다( 1, 'hello' 등 )
+      2. false : 데이터가 없으면 false로 간주한다. ( 0(숫자), ''(빈문자열), undefined, null )
+    */
+    
+    /*
+      디폴트 값 처리하기
+      1. 변수로 전달된 값이 없는 경우 기본갑ㅎ으로 사용할 데이터를 지정할 수 있다.
+      2. short circuit을 활용할 수 있다. 
+    */
+
+
+    //전달값이 있는 경우에는 전달값을 사용한다.
+    var x = '전달값';
+    var result = x || '기본값'; // x가 true이므로 , short circuit으로인해 뒤에 식을 무시함
+    console.log(result);  // 전달값
+
+    //전달값이 없는 경우에는 기본값을 사용한다.
+    var x = '';
+    var result = x || '기본값'; 
+    console.log(result);  // 기본값
+
+    /* 
+    short circuit 복습
+      var x = 10;
+      var y = 20; 
+      var result = x == 10 || ++y == 21; // 또는(||)이 나오면 앞쪽이 true일 때 뒤에 식 계산을 안한다. 그러기때문에y값은 변화가 없음 
+      console.log(x, y, result); // 10, 20, true
+   */
+  </script>
+
+  <script src="../assets/js/pay.js" ></script>
+</body>
+</html>
