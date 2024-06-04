@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      Dom
+      1. Document Object Model, 문서 객체 모델
+      2. 태그로 구성된 HTML, XML 문서의 프로그래밍 인터페이스
+      3. JavaScript를 이용하여 DOM 구조(태그)에 접근한 뒤 구조/스타일/내용 등을 변경할 수 있다.
+      4. 주요 종류
+        1) var 변수 = document.getElementById('아이디');
+        2) var 배열 = document.getElementByClassName('클래스');
+        3) var 배열 = document.getElementByTagName('태그');
+        4) var 변수 = document.querySelector('선택자')
+        5) var 배열 = document.querySelectorAll('선택자')
+      5. 주의사항
+        DOM 구조(태그)를 상단에 배치하고, JavaScript 코드를 하단에 배치해야 한다.
+    */
+
+  </script>
+  <!-- Dom 요소는 상단에 배치한다. -->
+  <div class="wrap">
+    <div id="box1" class="primary-box">box1</div>
+    <div id="box2" class="primary-box">box2</div>
+    <div id="box3" class="primary-box">box3</div>
+  </div>
+
+   <!-- JavaScript 코드는 하단에 배치한다. -->
+  <script>
+    console.log(document.getElementById('box1'));
+    console.log(box1);
+
+    var primaryBox =  document.getElementsByClassName('primary-box');
+    console.log(primaryBox);
+    
+    var div = document.getElementsByTagName('div');
+    console.log(div);
+
+    var box2 = document.querySelector('#box2'); // getElementById를 사용 못할 때 차선택으로 사용 권장
+    
+    var innerDiv = document.querySelectorAll('.wrap > div');
+  </script>
+</body>
+</html>

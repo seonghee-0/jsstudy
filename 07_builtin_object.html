@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // 현재 날짜와 시간
+    var now =  Date(); //string 형식의 now
+    console.log(now, typeof now);
+
+    var now = new Date(); // object 형식의 now
+    console.log(now, typeof now);
+
+    // 특정 날짜와 시간
+    var datetime = new Date(2024,0,1,12,0,0,) // 2024-01-01 12:00:00(월은 0~11 값을 가진다.)
+    console.log(datetime);
+    // 타임스탬프
+    var timestamp = Date.now();
+    console.log(timestamp);
+
+    // 단위 추출
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var day = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var timestamp = now.getTime();
+    console.log(year, month,day,hour,minute,second,timestamp);
+  </script>
+  <script>
+
+  /*
+  < arrow function >
+  function(){}   ==>   ()=>{}
+  */
+
+  // 배열
+  var hobbies = ['game','travel','cooking','fishing'];
+  hobbies.forEach((hobby)=>{
+    console.log(hobby);
+  })
+
+  hobbies.forEach((hobby,i)=>{
+    console.log((i +1 ) +'번째 취미 :' + hobby);
+  })
+
+  // find() : 조건을 만족하는 첫번째 요소를 반환
+  var numbers = [1,2,3,4,5,6,7,8,9,10];
+  var result = numbers.find(function(number){
+    return number % 5 === 0; // 조건식 : 5의 배수
+  });
+  console.log(result);
+
+  // filter() : 조건을 만족하는 모든 요소를 배열로 반환
+  numbers.filter(function(number){
+    return number % 2 === 1; //조건식 : 홀수
+  }).forEach(function(number){
+    console.log(number);
+  })
+
+  // 배열
+  var cars = [
+    {
+      model:'K3'
+    },
+    {
+      model:'K5'
+    },
+    {
+      model:'k7'
+    }
+  ]
+
+  // map():배열 요소를 변환한 배열을 반환
+  cars.map(function(car){
+    return {
+      model:car.model
+      , marker : 'kia'
+    };
+  }).forEach(function(car){
+    console.log(car);
+  })
+  
+  </script>
+
+
+  <script>
+
+    //string
+    var str = 'JavaScript';
+    
+    // 1. 길이반환
+    console.log('길이 : ', str.length);
+
+    // 2. 특정 인덱스의 문자 반환
+    console.log(str.charAt(0)) // charAt(0) => 첫번째 글자
+    console.log(str.charAt(str.length - 1)); // charAt(배열.length - 1) => 마지막 글자
+
+    // 3. 특정 문자의 인덱스 반환
+    console.log('첫 번째 a의 인덱스', str.indexOf('a'));
+    console.log('마지막 a의 인덱스' , str.lastIndexOf('a'));
+
+    // 4. 일부 문자열 반환
+    console.log('Java',str.substring(0, 4)); // 인덱스0(포함) <= 문자열 < 인덱스4(불포함)
+                                //  ㄴ> (a, b) 쉽게 알기 b - a = c ,  a부터 c 만큼  
+    console.log('Script', str.substring(4)); // 인덱스 4부터 끝까지
+    console.log('Java', str.substr(0, 4));   // 인덱스 0부터 4글자 (deprecated)
+    console.log('Script', str.substr(4));    // 인덱스 4부터 끝까지(deprecated)   
+    
+    // 5. 특정 패턴 포함 여부 반환
+    console.log(str.startsWith('A')); // 'A'로 시작하면 true , 아니면 false
+    console.log(str.endsWith('A'));   // 'A'로 끝나면 true , 아니면 false 
+    console.log(str.match(/[0-9]/g)); // 숫자를 배열로 반환 , 없으면 null
+
+    // 6. 치환 결과 반환
+    console.log('J_vaScript', str.replace('a','_'));       // 첫번째 발견된 a를 _로 치환
+    console.log('J_v_Script', str.replaceAll(/[a]/g,'_')); // 모든 a를 _로 치환(정규식 사용)  ( ! 정규식에서'.' 는 모든 문자를 의미함)
+
+    // 7. 문자열 채우기
+    console.log('*****JavaScript', str.padStart(15, '*')); //(15자리로 만들어주는데 빈자리는 앞쪽에 *을 넣음)
+    console.log('JavaScript*****', str.padEnd(15, '*')); //(15자리로 만들어주는데 빈자리는 뒤쪽에 *을 넣음)
+
+    // 8. 문자열을 분리해서 배열로 반환
+    var str = 'a,b,c,d,e';
+    var array = str.split(',');
+    console.log(array);
+
+    // 9. 배열 요소를 합친 문자열을 반환
+    var hobbies = ['game','travel','cooking'];
+    var str = hobbies.join(','); //요소를 합치는데 ,를 넣어줌
+    console.log(str);
+    
+    // 연습 split()과 join을 이용해서 replaceAll()효과 내기
+    var ip = '192.168.0.210';
+    var result = ip.split('.').join('_');
+    console.log(result); //192_168_0_210
+     
+    
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+  </script>
+</body>
+</html>
