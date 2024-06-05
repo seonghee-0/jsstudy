@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <script>
+    /*
+      BOM
+      1. BrowserObject Model (브라우저 객체 모델)
+      2. 브라우저의 구성 요소를 JavaScript 객체로 저장한 뒤 사용할 수 있다.
+      3. 주요 BOM 요소
+        1) window   : 브라우저 화면 자체를 의미한다 (모든 JavaScript 객체의 최상위 객체이다. 코드상에서 생략할 수 있다.)
+        2) history  : 방문했던 경로를 기억하고 있는 객체이다.
+        3) location : 경로(URL)를 관리하는 객체이다 
+        4) screen   : 브라우저 화면 정보를 관리하는 객체이다.
+    */
+  </script>
+  <div>
+    <button type="button" id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+    <button type="button" id="forward-btn"><i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+  <script>
+    var backBtn = document.getElementById('back-btn');
+    var forwardBtn = document.getElementById('forward-btn');
+
+    backBtn.addEventListener('click',function(){
+      history.back(); // back 메소드
+    })
+    
+    forwardBtn.addEventListener('click',function(){
+      history.forward(); // forward 메소드
+    })
+
+    // n단계 뒤로 가기
+    // history.go(-n); => (-1)은 back (1)은 forward와 같음
+  </script>
+  <hr>
+  <style>
+    .blind{display: none;}
+  </style>
+  <div id="box" style="display: flex;">
+    <div><img src="../assets/images/logo_coupang.png" alt="coupang" width="100px"><span class="blind">https://www.coupang.com</span></div>
+    <div><img src="../assets/images/logo_daum.png" alt="daum" width="100px"><span class="blind">https://www.daum.net</span></div>
+    <div><img src="../assets/images/logo_google.png" alt="google" width="100px"><span class="blind">https://www.google.com</span></div>
+    <div><img src="../assets/images/logo_naver.png" alt="naver" width="100px"><span class="blind">https://www.naver.com</span></div>
+  </div>
+  <script>
+    var imgList = document.querySelectorAll('#box img');
+    imgList.forEach(function(img, i){
+      img.addEventListener('click', function(evt){
+        var url = evt.target.nextElementSibling.textContent; //nextElementSibling 다음 형제요소
+        location.href = url;
+      })
+    })
+  </script>
+</body>
+</html>

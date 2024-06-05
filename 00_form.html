@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+</head>
+<body>
+  <!-- method : 전송방식  -->
+  <form method="get" action="/path/somewhere">
+
+    <!-- 입력 상자 -->
+    <div>
+      <input type="text" name="id" placeholder="아이디">
+    </div>
+    <div>
+      <input type="password" name="pw" placeholder="비밀번호">
+    </div>
+    <div>
+      <textarea name="intro" id="" cols="30" rows="10"></textarea>
+    </div>
+
+    <!-- 단일 선택 -->
+    <div> 성별 : 
+      <input type="radio" name="gender" id="man" value="man"><label for="man">남자</label>
+      <input type="radio" name="gender" id="woman" value="woman"><label for="woman">여자</label>
+      <input type="radio" name="gender" id="none" value="none" checked><label for="none" >선택안함</label>
+    </div>
+    <div> 색상 : 
+      <input type="radio" name="color" id="yellow" value="yellow"><label for="yellow">노랑</label>
+      <input type="radio" name="color" id="green" value="green"><label for="green">초록</label>
+      <input type="radio" name="color" id="blue" value="blue" ><label for="blue" >파랑</label>
+    </div>
+
+    <!-- 다중 선택 -->
+    <div> 취미 : 
+      <input type="checkbox" name="hobbies1" id="game" value="game"><label for="game">게임</label>
+      <input type="checkbox" name="hobbies2" id="travel" value="travel"><label for="travel">여행</label>
+      <input type="checkbox" name="hobbies3" id="lego" value="lego"><label for="lego">레고</label>
+    </div>
+
+    <!-- 목록 선택 -->
+    <div>
+      <select name="region">
+        <option value="서울" >02</option> <!-- value가 있을 땐 서버측에 value값이 전달된다 -->
+        <option>032</option>  <!-- value가 없을 땐 서버측에 태그 내 text가 전달된다 -->
+        <option>031</option>  <!-- value값과 text는 같은값을 넣지 않기!!!!서버측에 값을 바꿔서 보내고싶을때만 value값을 넣는다 -->
+      </select>
+    </div>
+
+    <!-- 목록에서 선택 + 직접 입력 -->
+    <input type="text" name="host" list="host">
+    <datalist id="host">
+      <option value="">naver.com</option>
+      <option value="">kakao.com</option>
+      <option value="">gmal.com</option>
+    </datalist>
+    
+    <!-- 정해진 값 -->
+    <input type="hidden" name="charencoding" value="UTF-8">
+    <input type="hidden" name="author" value="hong">
+    <hr>
+
+    <!-- 서브밋 버튼 : submit이 디폴트값-->
+    <button type="submit">전송</button> 
+  </form>
+
+
+
+  <!-- 파일 첨부 폼 형식 -->
+  <form action="post" enctype="multipart/form-data"> 
+  <!-- 	enctype 모든 문자를 인코딩하지 않음을 명시함.
+        이 방식은 <form> 요소가 파일이나 이미지를 서버로 전송할 때 주로 사용함. -->
+    <div>
+      <input type="file" name="profile" multiple="multiple">
+    </div>
+
+    <div>
+      <button type="submit">전송</button>
+    </div>
+    <hr>
+  </form>
+    <div style="border: 2px solid #3fbb4a; display: inline-block; padding-left: 20px; border-radius: 15px; overflow: hidden;"  >
+      <form method ="get" action="https://search.naver.com/search.naver" name="search">
+        <input type="text" name="query" placeholder="검색어를 입력하세요" style=" padding: 5px; border: 0; outline: none;">
+        <button type="submit" style=" background: #3fbb4a; color: #fff; border: 0; height:25px; vertical-align: bottom; padding: 0px 10px; cursor: pointer;">검색</button>
+      </form>
+    </div>
+</body>
+</html>
