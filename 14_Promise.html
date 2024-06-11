@@ -7,7 +7,7 @@
 </head>
 <body>
   <div>
-    <button onclick="ex1();"></button> <!-- ex1 함수를 실행하겠다-->
+    <button onclick="ex1();">ex3</button> <!-- ex1 함수를 실행하겠다-->
   </div>
   <script>
     // 비동기 통신 : 응답을 기다리지 않는다.
@@ -19,7 +19,7 @@
       const xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://thetestrequest.com/authors/1');
       xhr.send();
-      xhr.addEventListener('readystatechange', ()=>{
+      xhr.addEventListener('readystatechange', ()=>{ // readystate가 변하는걸 인식하는 이벤트
         if(xhr.readyState === 4 && xhr.status === 200){
           const author = JSON.parse(xhr.responseText) //json은 responseText로 받음
           const { id, name, email, avatar, created_at, updated_at} = author;
@@ -27,19 +27,19 @@
         }
       })
       
-      // 3) 변수 확인(비동기 작업 수행 결과로 authorId값이 채워지지만,  2번 과정이 끝날때까지 기다리지 않고 authorId 변수 값을 확인한다.
+      // 3) 변수 확인(비동기 작업 수행 결과로 authorId 값이 채워지지만, 2번 과정이 끝날때까지 기다리지 않고 authorId 변수 값을 확인한다.
       // 문제 확인.왜 1이 안나올까? 
       console.log(authorId); 
     }
   </script>
   <div>
-    <button onclick="ex2();"></button> <!-- ex1 함수를 실행하겠다-->
+    <button onclick="ex2();">ex2</button> <!-- ex1 함수를 실행하겠다-->
   </div>
   <script>
 
     /*
-      < Promise >
-
+    < Promise >
+      
       1. 비동기작업이 맞이할 미래의 성공 또는 실패에 따른 결과값을 처리하는 객체이다
       2. 비동기작업이 완료(성공,실패) 되면 결과를 제공하겠다는'약속'을 반환하는 방식으로 동작한다.
       3. Promise 상태
@@ -98,6 +98,73 @@
     })
     
   }
+  </script>
+  <div id="div3">
+    <button type="button" id="btn3">ex3</button>
+  </div>
+  <script>
+    const ex3 = (url)=> { // url => 'https://thetestrequest.com/authors'
+      return new Promise((resolve,reject)=>{
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+        xhr.addEventListener('readystatechange', (evt)=>{ 
+          if(xhr.readyState !== 4)
+            return
+          if(xhr.status !== 200)
+          reject(xhr.statusText);
+          const authors = JSON.parse(xhr.responseText);
+          resolve(authors);
+          
+        })
+      })
+    }
+
+    document.getElementById('btn3').addEventListener('click',(evt)=>{
+      ex3('https://thetestrequest.com/authors')
+      .then((resData)=>{
+        console.log(typeof resData);
+        console.log(resData);  
+      })
+      .catch((statusText)=>{
+        alert(statusText);
+      })
+    })
+  </script>
+  <div id="div4">
+    <button type="button" id="btn4">ex4</button>
+  </div>
+  <script>
+
+    const ex4 = (url, option)=> { 
+      const {method} = option; // const method = option.method;
+      return new Promise((resolve, reject)=>{
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.send();
+        // load이벤트 : XMLHttpRequest 가 수행한 작업(트랜잭션)이 성공했을 때 발생하는 이벤트
+        xhr.addEventListener('load', (evt)=>{
+          const authors = JSON.parse(xhr.responseText);
+          resolve(authors);
+        })
+         // error 이벤트 : XMLHttpRequest 가 수행한 작업(트랜잭션)이 실패했을 때 발생하는 이벤트
+        xhr.addEventListener('error', (evt)=>{ 
+            reject(xhr.statusText);
+         })
+      })
+    }
+
+    document.getElementById('btn4').addEventListener('click',(evt)=>{
+      ex4('https://thetestrequest.com/authors', { method:'GET' })
+      .then((resData)=>{
+        console.log(typeof resData);
+        console.log(resData);  
+      })
+      .catch((statusText)=>{
+        alert(statusText);
+      })
+    })
+
   </script>
 </body>
 </html>
